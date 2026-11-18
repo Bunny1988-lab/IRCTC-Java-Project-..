@@ -17,8 +17,7 @@ public class Main {
         printWelcomeMessage();
 
         // Detect if running in an interactive terminal or with explicit interactive flag
-        boolean isInteractive = (System.console() != null)
-                || (args != null && args.length > 0 && "--interactive".equalsIgnoreCase(args[0]));
+        boolean isInteractive = (System.console() != null) || hasInteractiveFlag(args);
 
         if (isInteractive) {
             MainController controller = new MainController();
@@ -29,6 +28,18 @@ public class Main {
             System.out.println("[INFO] Core layered architecture, services, DAOs, and database modules ready.");
             System.out.println("==================================================================");
         }
+    }
+
+    private static boolean hasInteractiveFlag(String[] args) {
+        if (args == null) {
+            return false;
+        }
+        for (String arg : args) {
+            if ("--interactive".equalsIgnoreCase(arg) || "-i".equalsIgnoreCase(arg)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static void printBanner() {
