@@ -1,9 +1,11 @@
 package com.irctc;
 
+import com.irctc.controller.MainController;
+
 /**
  * Entry point for the IRCTC Railway Reservation System.
  *
- * This class initializes the console application and verifies system startup.
+ * <p>Initializes the application banner and launches the interactive console controller loop.</p>
  */
 public class Main {
 
@@ -13,8 +15,20 @@ public class Main {
     public static void main(String[] args) {
         printBanner();
         printWelcomeMessage();
-        printStartupConfirmation();
-        printExitMessage();
+
+        // Detect if running in an interactive terminal or with explicit interactive flag
+        boolean isInteractive = (System.console() != null)
+                || (args != null && args.length > 0 && "--interactive".equalsIgnoreCase(args[0]));
+
+        if (isInteractive) {
+            MainController controller = new MainController();
+            controller.start();
+        } else {
+            System.out.println("[INFO] Application running in non-interactive verification mode.");
+            System.out.println("[INFO] Launch in an interactive terminal or pass '--interactive' to open the CLI menu.");
+            System.out.println("[INFO] Core layered architecture, services, DAOs, and database modules ready.");
+            System.out.println("==================================================================");
+        }
     }
 
     private static void printBanner() {
@@ -28,16 +42,5 @@ public class Main {
         System.out.println("Welcome to the IRCTC Railway Reservation System!");
         System.out.println("Next-generation console interface for railway ticketing operations.");
         System.out.println("------------------------------------------------------------------");
-    }
-
-    private static void printStartupConfirmation() {
-        System.out.println("[INFO] Application initialized successfully.");
-        System.out.println("[INFO] Core scaffolding and layered architecture ready.");
-        System.out.println("------------------------------------------------------------------");
-    }
-
-    private static void printExitMessage() {
-        System.out.println("[INFO] Initial scaffolding run completed. Exiting cleanly.");
-        System.out.println("==================================================================");
     }
 }
