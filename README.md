@@ -185,8 +185,9 @@ java -cp target/classes com.irctc.Main
 - [x] Application entry point (`Main.java`) initialized with startup verification.
 - [x] Centralized database properties template created.
 - [x] Git configuration and `.gitignore` safety rules configured.
-- [ ] Database schema DDL scripts (Stations, Trains, Schedules, Users, Bookings).
-- [ ] Centralized JDBC `DatabaseConnection` singleton/factory implementation.
-- [ ] DAO Layer implementation for User, Train, and Booking entities.
-- [ ] Service Layer business workflows (Seat allocation, PNR generation, Pricing).
-- [ ] Interactive Console Controller & Menu flow.
+- [x] Database schema DDL & DML scripts (`01_schema.sql` and `02_seed_data.sql`).
+- [x] Centralized JDBC `DatabaseConnection` singleton/factory implementation.
+- [x] Type-safe Enums and Domain Model POJOs implemented (`com.irctc.enums`, `com.irctc.model`).
+- [x] DAO Layer implementation with JDBC (`com.irctc.dao`, `com.irctc.dao.impl`).
+- [x] Service Layer business workflows (Seat allocation, PNR generation, Pricing, ACID transactions).
+- [x] Interactive Console Controller & Menu flow (`MainController`, `PassengerController`, `AdminController`).
